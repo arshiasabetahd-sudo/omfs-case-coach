@@ -13,9 +13,9 @@
     --accent-sage: #7fb3a0;
     --accent-crimson: #c0392b;
     --accent-amber: #f0a500;
-    --text-primary: #e8eef5;
+    --text-primary: #f2f6fb;
     --text-muted: #8fa8c8;
-    --border: rgba(143, 168, 200, 0.15);
+    --border: rgba(143, 168, 200, 0.25);
   }
 
   * {

@@ -4,7 +4,7 @@ IMPORTANT SAFETY FRAMING:
 - Do not include or request patient identifiers.
 - Do not give definitive treatment plans when important clinical information is missing.
 - Always recommend instructor or supervisor confirmation before applying information to real patients.
-- If you cannot find the answer in the provided course material, clearly state: "I could not find this in the uploaded course material."
+- If you cannot find the answer in the provided course material, clearly state: - Always use the Universal (ADA) Numbering System (#1-#32) for tooth numbers unless asked otherwise. "I could not find this in the uploaded course material."
 `.trim();
 
 export function buildCaseCoachSystem(courseContext: string): string {

@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const courseContext = loadCourseContext();
+    const courseContext = await loadCourseContext();
     const systemPrompt = getSystemPrompt(mode, courseContext);
 
     const response = await client.messages.create({

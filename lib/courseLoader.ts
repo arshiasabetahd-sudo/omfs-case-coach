@@ -13,55 +13,67 @@ const DATA_DIRS = [
   "data/textbook",
 ];
 
-const SUPPORTED_EXTENSIONS = [".txt", ".md", ".mdx"];
+const SUPPORTED_EXTENSIONS = [".txt", ".md", ".mdx", ".pdf"];
 
-function readFilesFromDir(dirPath: string, folder: string): CourseFile[] {
-  const files: CourseFile[] = [];
-
-  if (!fs.existsSync(dirPath)) return files;
-
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name);
-    if (
-      entry.isFile() &&
-      SUPPORTED_EXTENSIONS.includes(path.extname(entry.name).toLowerCase())
-    ) {
-      try {
-        const content = fs.readFileSync(fullPath, "utf-8");
-        files.push({
-          filename: entry.name,
-          folder,
-          content: content.trim(),
-        });
-      } catch {
-        // skip unreadable files
-      }
-    }
+async function extractPdfText(filepath: string): Promise<string> {
+  try {
+    // Dynamically import pdf-parse only when needed
+    const pdfParse = (await import("pdf-parse")).default;
+    const buffer = fs.readFileSync(filepath);
+    const data = await pdfParse(buffer);
+    return data.text || "";
+  } catch {
+    return "";
   }
-
-  return files;
 }
 
-export function loadCourseContext(): string {
+function readTextFile(filepath: string): string {
+  try {
+    return fs.readFileSync(filepath, "utf-8").trim();
+  } catch {
+    return "";
+  }
+}
+
+export async function loadCourseContext(): Promise<string> {
   const projectRoot = process.cwd();
   const allFiles: CourseFile[] = [];
 
   for (const dir of DATA_DIRS) {
     const dirPath = path.join(projectRoot, dir);
-    const files = readFilesFromDir(dirPath, dir);
-    allFiles.push(...files);
+    if (!fs.existsSync(dirPath)) continue;
+
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+
+    for (const entry of entries) {
+      if (!entry.isFile()) continue;
+      const ext = path.extname(entry.name).toLowerCase();
+      if (!SUPPORTED_EXTENSIONS.includes(ext)) continue;
+
+      const fullPath = path.join(dirPath, entry.name);
+      let content = "";
+
+      if (ext === ".pdf") {
+        content = await extractPdfText(fullPath);
+      } else {
+        content = readTextFile(fullPath);
+      }
+
+      if (content.trim().length > 50) {
+        allFiles.push({
+          filename: entry.name,
+          folder: dir,
+          content: content.trim().slice(0, 8000), // cap per file to avoid token overflow
+        });
+      }
+    }
   }
 
-  if (allFiles.length === 0) {
-    return "";
-  }
+  if (allFiles.length === 0) return "";
 
-  const sections = allFiles.map((f) => {
-    const label = `[Source: ${f.folder}/${f.filename}]`;
-    return `${label}\n${f.content}`;
-  });
+  const sections = allFiles.map(
+    (f) => `[Source: ${f.folder}/${f.filename}]\n${f.content}`
+  );
 
   return sections.join("\n\n---\n\n");
 }

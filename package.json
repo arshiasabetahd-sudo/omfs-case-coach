@@ -13,6 +13,7 @@
     "react": "^18",
     "react-dom": "^18",
     "@anthropic-ai/sdk": "^0.24.3",
+    "pdf-parse": "^1.1.1",
     "lucide-react": "^0.400.0",
     "clsx": "^2.1.1"
   },

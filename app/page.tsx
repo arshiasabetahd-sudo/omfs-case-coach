@@ -106,12 +106,12 @@ export default function Home() {
                 />
                 <div
                   className={`text-sm font-medium leading-tight ${
-                    isActive ? "text-bone-50" : "text-bone-100/60"
+                    isActive ? "text-bone-50" : "text-bone-100/85"
                   }`}
                 >
                   {tab.label}
                 </div>
-                <p className="mt-0.5 hidden sm:block text-xs leading-tight text-bone-100/40 line-clamp-2">
+                <p className="mt-0.5 hidden sm:block text-xs leading-tight text-bone-100/70 line-clamp-2">
                   {tab.description}
                 </p>
                 {isActive && (

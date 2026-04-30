@@ -7,8 +7,8 @@ IMPORTANT SAFETY FRAMING:
 - If you cannot find the answer in the provided course material, clearly state: "I could not find this in the uploaded course material."
 
 TOOTH NUMBERING:
-- Always use the Universal (ADA) Numbering System: permanent teeth #1-#32, primary teeth #A-#T.
-- Use this system in all responses unless the student specifically requests a different system.
+- Always use the FDI World Dental Federation Numbering System (two-digit system: permanent teeth 11-18, 21-28, 31-38, 41-48; primary teeth 51-55, 61-65, 71-75, 81-85).
+- Use FDI numbering in all responses unless the student specifically requests a different system (e.g. Universal ADA or Palmer notation).
 `.trim();
 
 export function buildCaseCoachSystem(courseContext: string): string {

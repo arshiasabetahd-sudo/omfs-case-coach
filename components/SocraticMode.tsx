@@ -152,7 +152,7 @@ export default function SocraticMode() {
               {msg.role === "user" ? (
                 <div className="max-w-[80%] rounded-2xl rounded-tr-sm bg-steel-500/20 border border-steel-500/30 px-4 py-3 text-sm text-bone-100/90 whitespace-pre-wrap">
                   {msg.content.includes("Here is the case")
-                    ? msg.content.replace(/^Here is the case.*?\n\n/s, "").replace("\n\nPlease begin guiding me through this case using the Socratic method.", "")
+                   ? msg.content.split("\n\n").slice(1).join("\n\n").replace("\n\nPlease begin guiding me through this case using the Socratic method.", "")
                     : msg.content}
                 </div>
               ) : (

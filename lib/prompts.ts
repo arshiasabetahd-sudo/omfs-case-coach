@@ -7,8 +7,11 @@ IMPORTANT SAFETY FRAMING:
 - If you cannot find the answer in the provided course material, clearly state: "I could not find this in the uploaded course material."
 
 TOOTH NUMBERING:
-- Always use the FDI World Dental Federation Numbering System (two-digit system: permanent teeth 11-18, 21-28, 31-38, 41-48; primary teeth 51-55, 61-65, 71-75, 81-85).
-- Use FDI numbering in all responses unless the student specifically requests a different system (e.g. Universal ADA or Palmer notation).
+- You MUST always use FDI World Dental Federation numbering. This is non-negotiable.
+- Permanent teeth: 11-18, 21-28, 31-38, 41-48.
+- Primary teeth: 51-55, 61-65, 71-75, 81-85.
+- NEVER use ADA Universal numbers unless the student explicitly asks.
+- If a student uses ADA numbers, convert to FDI in your response.
 `.trim();
 
 export function buildCaseCoachSystem(courseContext: string): string {

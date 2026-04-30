@@ -46,7 +46,7 @@
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-xl border border-navy-600/60 px-4 py-2 text-sm font-medium text-steel-400 transition-all hover:border-steel-500/60 hover:text-steel-300 active:scale-95;
+    @apply inline-flex items-center gap-2 rounded-xl border border-navy-600/60 px-4 py-2 text-sm font-medium text-steel-400 transition-all hover:border-steel-500/60 hover:text-steel-400 active:scale-95;
   }
 
   .input-area {
